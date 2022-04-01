@@ -145,7 +145,7 @@ from okta_jwt_verifier import BaseJWTVerifier
 async def main():
     jwt_verifier = BaseJWTVerifier('{ISSUER}', '{CLIENT_ID}', 'api://default')
     headers, claims, signing_input, signature = jwt_verifier.parse_token({JWT})
-    okta_jwk = await self.get_jwk(headers['kid'])
+    okta_jwk = await jwt_verifier.get_jwk(headers['kid'])
 
     # Then it can be used to verify_signature as in example above.
     jwt_verifier.verify_signature('{JWT}', okta_jwk)
